@@ -1,0 +1,14 @@
+[
+    {
+        "start_step": 0,
+        "end_step": 5000,
+        "agent_info": [
+            {
+                "overtake_vehicle_num": 0,
+                "velocity": 4.688528323072799,
+                "steering": -0.025689763948321342,
+                "acceleration": 0.7931259870529175,
+                "step_energy": 0.017348161984991416,
+                "episode_energy": 0.14677328705819162,
+                "policy": "ExpertPolicy",
+                "action": 
