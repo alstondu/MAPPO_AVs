@@ -6,3 +6,5 @@ setproctitle==1.3.3
 tensorboardX==2.6.2.2
 torch
 wandb==0.16.0
+matplotlib
+metadrive-simulator

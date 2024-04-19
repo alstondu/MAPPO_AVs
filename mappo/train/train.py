@@ -1,14 +1,12 @@
 import random
 import sys
 import os
-import socket
 import setproctitle
 import numpy as np
 from pathlib import Path
 import torch
 import matplotlib.pyplot as plt
 from metadrive.component.sensors.rgb_camera import RGBCamera
-from metadrive.policy.idm_policy import ManualControllableIDMPolicy
 from metadrive.policy.idm_policy import IDMPolicy
 from metadrive.policy.expert_policy import ExpertPolicy
 from metadrive.obs.state_obs import LidarStateObservation
@@ -114,16 +112,12 @@ def main(args):
         use_render=all_args.use_render,
         crash_done=True,
         delay_done=True,
-        # sensors=dict(rgb_camera=(RGBCamera, 100, 50)),
         start_seed=random.randint(0, 1000),
         show_coordinates=True,
-        # image_observation=False,
-        #interface_panel=["RGBCamera", "dashboard"],
         random_traffic=all_args.human_vehicle,
         traffic_density=all_args.traffic_density[all_args.env] if all_args.human_vehicle else 0,
-        #agent_policy=IDMPolicy,
-        agent_policy= ExpertPolicy,
-        #cross_yellow_line_done=True,
+        # agent_policy=IDMPolicy,
+        # agent_policy= ExpertPolicy,
         agent_observation=LidarStateObservation,
 
         
@@ -144,22 +138,12 @@ def main(args):
             side_detector=dict(num_lasers=30),
             lane_line_detector=dict(num_lasers=12),
         )
-        # vehicle_config= dict(
-        #     =dict(num_lasers=240, distance=50, num_others=4, gaussian_noise=0.0, dropout_prob=0.0),
-        #     side_detector=dict(
-        #         num_lasers=2,  # Set to 0 to disable side detector
-        #     ),
-        #     lane_line_detector=dict(
-        #         num_lasers=1,  # Set to 0 to disable lane line detector
-        #     ),
-        # )
     )
 
     config_eval = dict(
         horizon=1000,
         show_fps=True,
         random_spawn_lane_index=False,
-        #start_seed=0,
         use_render=all_args.use_render_eval,
         crash_done=True,
         delay_done=True,
@@ -167,14 +151,11 @@ def main(args):
         sensors=dict(rgb_camera=(RGBCamera, 100, 50)),
         start_seed=random.randint(0, 1000),
         out_of_road_done=True,
-        show_coordinates=True,
-        # image_observation=False,
         interface_panel=["lidar", "dashboard"],
         random_traffic=all_args.human_vehicle,
         traffic_density=all_args.traffic_density[all_args.env] if all_args.human_vehicle else 0,
-        #agent_policy=IDMPolicy,
-        #agent_policy=ManualControllableIDMPolicy,
-        #agent_policy= ExpertPolicy,
+        # agent_policy=IDMPolicy,
+        # agent_policy= ExpertPolicy,
         agent_observation=LidarStateObservation,
         
         num_agents=num_agents,
@@ -194,16 +175,6 @@ def main(args):
             side_detector=dict(num_lasers=30),
             lane_line_detector=dict(num_lasers=12),
         )
-
-        # vehicle_config= dict(
-        #     lidar=dict(num_lasers=240, distance=50, num_others=4, gaussian_noise=0.0, dropout_prob=0.0),
-        #     side_detector=dict(
-        #         num_lasers=2,  # Set to 0 to disable side detector
-        #     ),
-        #     lane_line_detector=dict(
-        #         num_lasers=1,  # Set to 0 to disable lane line detector
-        #     ),
-        # )
     )
     total_reward = []
     config = {

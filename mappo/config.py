@@ -209,7 +209,7 @@ def get_config():
     parser.add_argument(
         "--num_env_steps",
         type=int,
-        default=5e6,
+        default=10e6,
         help="Number of environment steps to train (default: 10e6)",
     )
     parser.add_argument(
@@ -299,7 +299,7 @@ def get_config():
     parser.add_argument(
         "--use_naive_recurrent_policy",
         action="store_true",
-        default=True,
+        default=False,
         help="Whether to use a naive recurrent policy",
     )
     parser.add_argument(
@@ -548,101 +548,3 @@ def get_config():
     return parser
 
 
-
-
-if __name__=="__main__":
-    # Prepare parameters
-    algorithm_name = "mappo"  # The algorithm to use
-    experiment_name = "check"  # Identifier for the experiment
-    seed = 1  # Random seed for numpy/torch
-    cuda = True  # Use GPU for training (True) or CPU (False)
-    cuda_deterministic = True  # Ensure random seed effectiveness (True) or bypass (False)
-    n_training_threads = 2  # Number of training threads
-    n_rollout_threads = 1  # Number of parallel envs for training rollouts
-    n_eval_rollout_threads = 1  # Number of parallel envs for evaluating rollouts
-    n_render_rollout_threads = 1  # Number of parallel envs for rendering rollouts
-    num_env_steps = 10000000  # Number of environment steps to train
-    user_name = "marl"  # User's name for collecting training data
-
-    # Env parameters
-    env_name = "MyEn"  # Name of the environment
-    use_obs_instead_of_state = False  # Use global state (False) or concatenated observations (True)
-
-    # Replay Buffer parameters
-    episode_length = 200  # Maximum episode length
-
-    # Network parameters
-    share_policy = False  # Agents share the same policy (False) or not (True)
-    use_centralized_V = True  # Use centralized V function (True) or not (False)
-    stacked_frames = 1  # Number of stacked frames
-    use_stacked_frames = False  # Use stacked frames (True) or not (False)
-    hidden_size = 64  # Dimension of hidden layers for actor/critic networks
-    layer_N = 1  # Number of layers for actor/critic networks
-    use_ReLU = False  # Use ReLU (True) or not (False)
-    use_popart = False  # Use PopArt to normalize rewards (False)
-    use_valuenorm = True  # Use running mean and std to normalize rewards (True)
-    use_feature_normalization = True  # Apply layernorm to normalize inputs (True)
-    use_orthogonal = True  # Use Orthogonal initialization for weights and 0 initialization for biases (True)
-    gain = 0.01  # Gain for the last action layer
-
-    # Recurrent parameters
-    use_naive_recurrent_policy = False  # Use a naive recurrent policy (True) or not (False)
-    use_recurrent_policy = False  # Use a recurrent policy (True) or not (False)
-    recurrent_N = 1  # Number of recurrent layers
-    data_chunk_length = 10  # Time length of chunks used to train a recurrent policy
-
-    # Optimizer parameters
-    lr = 0.0005  # Learning rate
-    critic_lr = 0.0005  # Critic learning rate
-    opti_eps = 1e-05  # RMSprop optimizer epsilon
-    weight_decay = 0  # Coefficient of weight decay
-
-    # PPO parameters
-    ppo_epoch = 15  # Number of PPO epochs
-    use_clipped_value_loss = False  # Clip value loss (False) or not (True)
-    clip_param = 0.2  # PPO clip parameter
-    num_mini_batch = 1  # Number of batches for PPO
-    entropy_coef = 0.01  # Entropy term coefficient
-    value_loss_coef = 1  # Value loss coefficient
-    use_max_grad_norm = False  # Use max norm of gradients (False) or not (True)
-    max_grad_norm = 10.0  # Max norm of gradients
-    use_gae = False  # Use generalized advantage estimation (False) or not (True)
-    gamma = 0.99  # Discount factor for rewards
-    gae_lambda = 0.95  # GAE lambda parameter
-    use_proper_time_limits = True  # Compute returns taking into account time limits (True) or not (False)
-    use_huber_loss = False  # Use huber loss (False) or not (True)
-    use_value_active_masks = False  # Mask useless data in value loss (True) or not (False)
-    use_policy_active_masks = False  # Mask useless data in policy loss (True) or not (False)
-    huber_delta = 10.0  # Coefficient of huber loss
-
-    # PPG parameters
-    aux_epoch = 4  # Number of auxiliary epochs
-    clone_coef = 0.01  # Clone term coefficient
-
-    # Run parameters
-    use_linear_lr_decay = False  # Apply linear decay to learning rate (True) or not (False)
-
-    # Save & Log parameters
-    save_interval = 1  # Time duration between continuous model saving
-    log_interval = 5  # Time duration between continuous log printing
-
-    # Eval parameters
-    use_eval = True  # Start evaluation alongside with training (True) or not (False)
-    eval_interval = 3  # Time duration between continuous evaluation progress
-    eval_episodes = 32  # Number of episodes for a single evaluation
-
-    # Render parameters
-    save_gifs = False  # Save render video (True) or not (False)
-    use_render = False  # Render the environment during training (True) or not (False)
-    render_episodes = 5  # Number of episodes to render a given env
-    ifi = 0.1  # Play interval of each rendered image in saved video
-
-    # Pretrained parameters
-    model_dir = None  # Path to pretrained model
-
-    # Environment selection
-    env = ""  # Name of the environment
-    top_down = False  # Use top-down view (True) or not (False)
-    num_agent = 2  # Number of agents
-
-    #        num_updates = self.ppo_epoch * self.num_mini_batch

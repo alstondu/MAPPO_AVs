@@ -3,7 +3,6 @@ import time
 import os
 
 import numpy as np
-from metadrive.component.sensors.rgb_camera import RGBCamera
 from metadrive import (
     MultiAgentMetaDrive, MultiAgentTollgateEnv, MultiAgentBottleneckEnv, MultiAgentIntersectionEnv,
     MultiAgentRoundaboutEnv, MultiAgentParkingLotEnv
