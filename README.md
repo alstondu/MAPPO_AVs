@@ -1,5 +1,3 @@
-Here's the complete README file in English, incorporating the content you provided:
-
 # MAPPO for Autonomous Vehicles (MAPPO-AVs)
 
 This project utilizes the Multi-Agent Proximal Policy Optimization (MAPPO) algorithm, a multi-agent reinforcement learning (MARL) approach, to train autonomous driving agents in traffic scenarios using the MetaDrive environment. The goal is to enable multiple autonomous driving agents to learn collaboration and policy optimization in complex traffic environments, improving traffic safety, success rate, and efficiency.
