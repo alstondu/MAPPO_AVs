@@ -1,0 +1,3 @@
+[submodule "metadrive"]
+	path = metadrive
+	url = https://github.com/metadriverse/metadrive.git
