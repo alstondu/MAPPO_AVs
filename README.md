@@ -23,10 +23,9 @@ $ conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c n
 $ pip install -r requirements.txt
 ```
 
-4. Install MetaDrive:
+4. Replace the modified file in the MetaDrive lib:
 ```
-$ cd PATH/TO/MAPPO-AVs/metadrive
-$ pip install -e .
+$ cp torch_expert.py $CONDA_PREFIX/lib/python3.8/site-packages/metadrive/examples/ppo_expert/torch_expert.py
 ```
 
 ## Usage
