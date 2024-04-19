@@ -12,19 +12,24 @@ $ conda create -n metadrive-mappo python=3.8 -y
 $ conda activate metadrive-mappo
 ```
 
-2. Clone the repository:
+2. Clone the repo:
 ```
-$ git clone https://github.com/alstondu/MAPPO_AVs
-$ cd PATH/TO/MAPPO-AVs
+$ git clone git@github.com:alstondu/MAPPO-AVs.git
+
 ```
 
-3. Install required packages:
+3. Install required packages for mappo:
 ```
+$ cd PATH/TO/MAPPO-AVs/mappo
 $ conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c nvidia
 $ pip install -r requirements.txt
 ```
 
-4. Replace the file `torch_expert.py` in the `PATH/TO/anaconda/envs/metadrive-mappo/lib/python3.8/site-packages/metadrive/examples/ppo_expert` with the provided [torch_expert.py](https://github.com/yourusername/MAPPO-AVs/blob/main/torch_expert.py).
+4. Install MetaDrive:
+```
+$ cd PATH/TO/MAPPO-AVs/metadrive
+$ pip install -e .
+```
 
 ## Usage
 
@@ -37,14 +42,14 @@ To start training, use the `train/train.py` script. The script has the following
 
 For example, to start an experiment with 20 agents in the 'Intersection_MAPPO' scenario using the MAPPO algorithm, run:
 ```
-python train/train.py --scenario_name Intersection_MAPPO --algorithm_name mappo --experiment_name test_run --num_agents 20
+python mappo/train/train.py --scenario_name Intersection_MAPPO --algorithm_name mappo --experiment_name test_run --num_agents 20
 ```
 Models and logs will be saved in the corresponding path under the `results/` directory.
 
 ### Evaluation
 To perform evaluation using a trained model, use the `--eval` flag:
 ```
-python train/train.py --eval --eval_model_dir /path/to/model/directory
+python mappo/train/train.py --eval --eval_model_dir /path/to/model/directory
 ```
 The `--eval_model_dir` should specify the path to the directory containing the trained model weights.
 
@@ -56,14 +61,15 @@ python calculate/calculategraph.py
 This will load the training log files from the `results/` directory and plot curves showing the agents' safety rate, success rate, efficiency, and other metrics over the training time.
 
 ## Project Structure
-
-- `algorithms/`: Contains implementations of the MAPPO and RMAPPO algorithms.
-- `calculate/`: Contains scripts for analyzing and visualizing training data.
-- `envs/`: Contains environment wrappers and definitions for RL training.
-- `runner/`: Contains training and evaluation logic.
-- `utils/`: Contains utility functions and buffer classes for recording training data.
-- `config.py`: Defines all training parameters.
-- `train/train.py`: Main script for training and evaluation.
+- `mappo/`: Contains implementations of the MAPPO and RMAPPO algorithms in MetaDrive.
+    - `algorithms/`: Contains implementations of the MAPPO and RMAPPO algorithms.
+    - `calculate/`: Contains scripts for analyzing and visualizing training data.
+    - `envs/`: Contains environment wrappers and definitions for RL training.
+    - `runner/`: Contains training and evaluation logic.
+    - `utils/`: Contains utility functions and buffer classes for recording training data.
+    - `config.py`: Defines all training parameters.
+    - `train/train.py`: Main script for training and evaluation.
+- `metadrive/`: Modified MetaDrive package for this project.
 
 ## Configuration Parameters
 
@@ -327,7 +333,7 @@ This project mainly references and uses the following algorithms, environments, 
 
 ## Maintainers
 
-Currently, this project is being developed and maintained by [@yourusername](https://github.com/yourusername). If you have any questions or suggestions for improvement, please feel free to open an issue or submit a pull request.
+Currently, this project is being developed and maintained by [@AlstonDu](https://github.com/AlstonDu). If you have any questions or suggestions for improvement, please feel free to open an issue or submit a pull request.
 
 ## Troubleshooting
 
@@ -361,7 +367,7 @@ We would like to express our gratitude to the following individuals and organiza
 
 If you have any questions, suggestions, or feedback regarding this project, please feel free to contact the project maintainers:
 
-- Your Name ([@yourusername](https://github.com/yourusername))
-- Your Email (your.email@example.com)
+- Your Name ([@AlstonDu](https://github.com/AlstonDu))
+- Your Email (ucab190@ucl.ac.uk)
 
 We appreciate your interest in this project and look forward to your contributions and feedback!
