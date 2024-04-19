@@ -1,7 +1,6 @@
 absl_py==2.0.0
 gym==0.26.2
 imageio==2.33.0
-metadrive-simulator
 numpy==1.24.2
 setproctitle==1.3.3
 tensorboardX==2.6.2.2
