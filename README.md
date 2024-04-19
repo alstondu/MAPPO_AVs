@@ -39,7 +39,7 @@ To start training, use the `train/train.py` script. The script has the following
 
 For example, to start an experiment with 20 agents in the 'Intersection_MAPPO' scenario using the MAPPO algorithm, run:
 ```
-$ cd PATH/TP/mappo
+$ cd PATH/TO/MAPPO-AVs/mappo
 $ python train/train.py --scenario_name Intersection_MAPPO --algorithm_name mappo --experiment_name test_run --num_agents 20
 ```
 Models and logs will be saved in the corresponding path under the `results/` directory.
