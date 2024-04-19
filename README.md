@@ -23,10 +23,9 @@ $ conda install pytorch torchvision torchaudio pytorch-cuda=11.8 -c pytorch -c n
 $ pip install -r requirements.txt
 ```
 
-4. Install MetaDrive:
+4. Replace the modified file in the MetaDrive lib:
 ```
-$ cd PATH/TO/MAPPO-AVs/metadrive
-$ pip install -e .
+$ cp torch_expert.py $CONDA_PREFIX/lib/python3.8/site-packages/metadrive/examples/ppo_expert/torch_expert.py
 ```
 
 ## Usage
@@ -40,7 +39,8 @@ To start training, use the `train/train.py` script. The script has the following
 
 For example, to start an experiment with 20 agents in the 'Intersection_MAPPO' scenario using the MAPPO algorithm, run:
 ```
-python mappo/train/train.py --scenario_name Intersection_MAPPO --algorithm_name mappo --experiment_name test_run --num_agents 20
+$ cd PATH/TO/MAPPO-AVs/mappo
+$ python train/train.py --scenario_name Intersection_MAPPO --algorithm_name mappo --experiment_name test_run --num_agents 20
 ```
 Models and logs will be saved in the corresponding path under the `results/` directory.
 
